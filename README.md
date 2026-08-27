@@ -2,6 +2,12 @@
 
 This is an agentic sync system that watches a master source of truth, propagates changes across dependent API references and tooling, then regenerates documentation and release artifacts automatically.
 
+See an example:
+
+- Commit that modified the core API: https://github.com/vvaswani/zero-drift-docs/commit/efd9e55a5630d4c553430d1f4d7c7ab464854081
+- Agentic update to documentation, gated on human review: https://github.com/vvaswani/zero-drift-docs/pull/12
+- Agentic SDK regeneration, similarly gated: https://github.com/vvaswani/zero-drift-docs/pull/11
+
 ## What this demo shows
 
 - a single source-of-truth API spec in `api/analytics-v1.yaml`
