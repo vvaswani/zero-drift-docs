@@ -1,6 +1,6 @@
 # Zero Drift
 
-This is an agentic sync system that watches a master source of truth, propagates changes across dependent API references and tooling, then regenerates documentation and release artifacts automatically.
+This is an agentic sync system that watches a master source of truth, propagates changes across dependent API references and tooling, then regenerates documentation and creates PRs automatically.
 
 See an example:
 
@@ -11,20 +11,18 @@ See an example:
 ## What this demo shows
 
 - a single source-of-truth API spec in `api/analytics-v1.yaml`
-- downstream updates to SDKs, docs, and runnable tooling
+- downstream updates to SDKs and docs
 - automated detection of spec drift
 - regeneration of affected documentation
-- release automation for the SDK and playground image
-- changelog-oriented release handling as part of the update flow
+- PR-based update flow for docs and SDKs
 
 ## Repository layout
 
 - `api/` - canonical OpenAPI source files
 - `docs/how-to/` - user-facing guides that must stay aligned with the API
 - `sdk/python/` - generated Python SDK and packaging metadata
-- `playground/` - local mock API playground for validation and demos
 - `scripts/docs_review_agent.py` - agent that checks spec diffs against docs
-- `.github/workflows/` - automation for docs, SDK, and playground updates
+- `.github/workflows/` - automation for docs and SDK updates
 
 ## End-to-end flow
 
@@ -32,8 +30,7 @@ See an example:
 2. The docs review agent compares the spec diff against `docs/how-to/`.
 3. If guidance has drifted, the affected docs are rewritten.
 4. The Python SDK is regenerated from the updated OpenAPI spec.
-5. The playground container is rebuilt with the refreshed spec.
-6. Release workflows publish the updated docs, SDK and playground artifacts.
+5. Workflows open PRs with the refreshed docs and SDK code.
 
 ## Automation
 
@@ -44,14 +41,6 @@ See an example:
 ### SDK regeneration
 
 `.github/workflows/update-sdk.yml` regenerates the Python SDK from the OpenAPI spec and opens a PR when generated output changes.
-
-### SDK release
-
-`.github/workflows/release-sdk.yml` packages and releases the SDK when the regenerated SDK lands on `main`.
-
-### Playground release
-
-`.github/workflows/release-playground.yml` syncs the API spec into the playground and publishes the updated container image.
 
 ## Local validation
 
@@ -76,5 +65,4 @@ python scripts/generate_sdk.py
 
 ## Notes
 
-- This repository is designed to demonstrate propagation of changes from a master source file through docs, SDKs, and release automation.
-- The playground is a mock environment for validation and should not be treated as a production API.
+- This repository demonstrates propagation of changes from a master source file through docs and SDKs, with automated PR creation for each.

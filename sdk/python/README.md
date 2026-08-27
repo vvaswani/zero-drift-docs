@@ -4,13 +4,7 @@ A Python SDK for interacting with the Analytics API.
 
 ## Installation
 
-Install the SDK from a GitHub release:
-
-```bash
-pip install https://github.com/vvaswani/zero-drift/releases/download/sdk-v0.1.0/analytics_sdk-0.1.0-py3-none-any.whl
-```
-
-Or install from source:
+Install from source:
 
 ```bash
 pip install -e .
@@ -92,7 +86,6 @@ When the Analytics API spec changes:
 - Run `python scripts/generate_sdk.py` to regenerate models and service wrapper
 - The patch version in `pyproject.toml` is automatically bumped
 - A GitHub Actions workflow opens a PR with the regenerated code
-- Once merged, the release workflow cuts a new GitHub Release with wheel/sdist
 
 ## Error Handling
 
@@ -118,19 +111,3 @@ with AnalyticsClient(api_key="key") as client:
     # Use client...
 # Automatically closed
 ```
-
-## Testing with the Playground
-
-The repo includes a mock API playground that runs the Analytics API locally:
-
-```bash
-docker run -p 8000:8000 ghcr.io/vvaswani/zero-drift/analytics-playground:latest
-```
-
-Then point your SDK calls to the local playground:
-
-```python
-client = AnalyticsClient(api_key="test-key", base_url="http://localhost:8000/analytics")
-```
-
-Access the Swagger UI at `http://localhost:8000/analytics/docs`.

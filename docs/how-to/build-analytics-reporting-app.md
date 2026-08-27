@@ -19,14 +19,7 @@ from analytics_sdk import AnalyticsClient
 client = AnalyticsClient(api_key="your-api-key-here")
 ```
 
-The API key must be passed to every request. If you're using the local playground:
-
-```python
-client = AnalyticsClient(
-    api_key="test-key",
-    base_url="http://localhost:8000/analytics"
-)
-```
+The API key must be passed to every request.
 
 ## 2. Creating a Property
 
@@ -282,25 +275,6 @@ if response.status_code >= 400:
 - `RATE_LIMIT_EXCEEDED`: Too many requests
 - `INTERNAL_ERROR`: Server-side error
 
-## 8. Testing with the Playground
-
-The repo includes a mock Analytics API playground for local testing:
-
-```bash
-docker run -p 8000:8000 ghcr.io/vvaswani/zero-drift/analytics-playground:latest
-```
-
-Then in your code:
-
-```python
-client = AnalyticsClient(
-    api_key="test-key",
-    base_url="http://localhost:8000/analytics"
-)
-```
-
-Visit the Swagger UI at `http://localhost:8000/analytics/docs` to explore endpoints interactively.
-
 ## Complete End-to-End Example
 
 ```python
@@ -399,4 +373,3 @@ finally:
 
 - Explore [build-analytics-dashboard-app.md](build-analytics-dashboard-app.md) for dashboard management
 - Check the [Analytics API spec](../api/analytics-v1.yaml) for complete reference
-- Try the playground locally at `http://localhost:8000/analytics/docs`

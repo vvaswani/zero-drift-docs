@@ -19,15 +19,6 @@ from analytics_sdk import AnalyticsClient
 client = AnalyticsClient(api_key="your-api-key-here")
 ```
 
-For the local playground:
-
-```python
-client = AnalyticsClient(
-    api_key="test-key",
-    base_url="http://localhost:8000/analytics"
-)
-```
-
 ## 2. Understanding Dashboards
 
 A Dashboard is a collection of Widgets, each displaying the results of a Report Query with a specific visualization type.
@@ -280,25 +271,6 @@ if response.status_code >= 400:
         print(f"Server Error: {message}")
 ```
 
-## 9. Testing with the Playground
-
-Run the mock Analytics API locally:
-
-```bash
-docker run -p 8000:8000 ghcr.io/vvaswani/zero-drift/analytics-playground:latest
-```
-
-Then in your code:
-
-```python
-client = AnalyticsClient(
-    api_key="test-key",
-    base_url="http://localhost:8000/analytics"
-)
-```
-
-Visit `http://localhost:8000/analytics/docs` to try dashboard endpoints interactively.
-
 ## Complete End-to-End Example
 
 ```python
@@ -518,4 +490,3 @@ print(f"Created {len(dashboard_ids)} weekly dashboards")
 
 - Explore [build-analytics-reporting-app.md](build-analytics-reporting-app.md) for event ingestion and ad-hoc reports
 - Check the [Analytics API spec](../api/analytics-v1.yaml) for complete API reference
-- Try the playground at `http://localhost:8000/analytics/docs`
